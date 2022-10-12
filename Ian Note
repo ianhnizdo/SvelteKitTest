@@ -1,0 +1,21 @@
+Much of our work here is within the svelvet folder of node_modules
+
+Much of svelte is built upon store. Put simply a store is an object that allows reactive acces to a value via simple store contract.
+
+Anytime you have a reference to a store, you can access its value inside a component by prefixing it with the $ character. This causes Svelte to declare i=the prefixed variable.
+
+Assignments to $ prefixed variable require that the variablebe a writable store and will result in a call to the store's .set method.
+
+The store must be declared at the top level of the component not inside an if block or a function, for example.
+
+Local variables (that do not represent store values) must not have a $ prefix.
+
+We can create our own stores without using svelte/store by using hte store contract
+
+store = { subscribe: (subscription: (value: any) => void) => (() => void), set?: (value: any) => void }
+
+Basically the store must contain a .subscribe method which accepts its argument a subscription function. The subscrioption funciton must be immediately and synchronously called with the store's current value upon calling .subscribe. All of a store's active subscription functions must b
+
+The subscribe method must return an unsubscribe function.
+
+Store may have an optional '.set' method.
